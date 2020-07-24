@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
 
-    public static void metod_bliz_ranga(ArrayList<Long> arrayList){
+    public static void metod_bliz_ranga(ArrayList<Long> arrayList, double proc){
         Collections.sort(arrayList);
         ArrayList<Long> newArrayList = new ArrayList<>();
         for (Long element : arrayList) {
@@ -20,9 +20,9 @@ public class Main {
                 newArrayList.add(element);
             }
         }
-        double n=(90.0/100.0)*10.0;
-        String hms = String.format("%02d часов %02d минут", TimeUnit.MILLISECONDS.toHours(arrayList.get((int)n-1)),
-                TimeUnit.MILLISECONDS.toMinutes(arrayList.get((int)n-1)) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(arrayList.get((int)n-1))));
+        double n=(proc/100.0)*newArrayList.size();
+        String hms = String.format("%02d часов %02d минут", TimeUnit.MILLISECONDS.toHours(newArrayList.get((int)n-1)),
+                TimeUnit.MILLISECONDS.toMinutes(newArrayList.get((int)n-1)) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(newArrayList.get((int)n-1))));
         System.out.println("90-й процентиль времени полёта между городами Владивосток и Тель-Авив: "+hms);
 
     }
@@ -78,7 +78,7 @@ public class Main {
         String hms = String.format("%02d часов %02d минут", TimeUnit.MILLISECONDS.toHours(cnt), TimeUnit.MILLISECONDS.toMinutes(cnt) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(cnt)));
         System.out.println("Среднее время полёта между городами Владивосток и Тель-Авив: "+hms);
 
-        metod_bliz_ranga(arrayList);
+        metod_bliz_ranga(arrayList,90.0);
 
     }
 
